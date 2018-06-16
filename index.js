@@ -17,23 +17,19 @@ class App extends React.Component {
       now: []
     }
 
-    this.getGroupData()
-    this.getTodayData()
-    this.getNowData()
-    setInterval(this.getGroupData.bind(this), 103 * 1000)
-    setInterval(this.getTodayData.bind(this), 35 * 1000)
-    setInterval(this.getNowData.bind(this), 10 * 1000)
+      this.getGroupData()
+      this.getTodayData()
+      this.getNowData()
+      setInterval(this.getGroupData.bind(this), 103 * 1000)
+      setInterval(this.getTodayData.bind(this), 35 * 1000)
+      setInterval(this.getNowData.bind(this), 10 * 1000)
   }
 
   async getGroupData() {
-    message.info('Fetching group data')
     try {
       const response = await fetch('https://world-cup-json.herokuapp.com/teams/group_results')
       const groups = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, {
-        groups: groups.map(a => a.group),
-      }))
-      message.success('Group data fecthed')
+      this.setState((prev, props) => Object.assign({}, prev, { groups: groups.map(a => a.group), }))
     } catch (e) {
       message.error('Group data error')
       console.error(e)
@@ -41,13 +37,9 @@ class App extends React.Component {
   }
   async getTodayData() {
     try {
-      message.info('Fetching today data')
       const response = await fetch('https://world-cup-json.herokuapp.com/matches/today')
       const today = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, {
-        today: today
-      }))
-      message.success('Today data fecthed')
+      this.setState((prev, props) => Object.assign({}, prev, { today: today }))
     } catch (e) {
       message.error('Today data error')
       console.error(e)
@@ -55,13 +47,9 @@ class App extends React.Component {
   }
   async getNowData() {
     try {
-      message.info('Fetching now data')
       const response = await fetch('https://world-cup-json.herokuapp.com/matches/current')
       const now = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, {
-        now: now
-      }))
-      message.success('Now data fecthed')
+      this.setState((prev, props) => Object.assign({}, prev, { now: now }))
     } catch (e) {
       message.error('Now data error')
       console.error(e)
