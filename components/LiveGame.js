@@ -71,8 +71,8 @@ export default class LiveGame extends React.Component {
                 width: "auto",
             }}>
                 <div>
-                    <Flag country={home_team.country} width={70} />
-                    <Flag country={away_team.country} width={70} />
+                    <Flag country={home_team.country} width={120} />
+                    <Flag country={away_team.country} width={120} />
                 </div>
                 {makeTag(this.props.match)}
                 <h2>{home_team.country} vs. {away_team.country}</h2>

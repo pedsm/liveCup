@@ -9,7 +9,7 @@ export default function Flag(props){
             url = flag.flag
         }
     }
-    let width = 20
+    let width = 30
     if(props.width != null) {
         width = props.width
     }
