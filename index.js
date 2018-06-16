@@ -94,6 +94,9 @@ class App extends React.Component {
       now = this.state.now[0]
     } else {
       now = this.state.today.filter(match => match.status != 'completed')[0]
+      if(now == null) {
+        this.state.today[this.state.today.length - 1]
+      }
     }
     return (
       <div id="main">
