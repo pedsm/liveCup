@@ -1,16 +1,36 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Flag from './Flag'
 import { Tag } from 'antd'
 import moment from 'moment'
 
-function makeTag(status) {
+function makeTag(match) {
+    const { status, datetime } = match
+    const time = new Date(datetime)
     if (status === "completed") {
-        return (<Tag color="green">Completed</Tag>)
+        return (
+            <Fragment>
+                <Tag color="green">Completed</Tag>
+                <br />
+                {moment(time).fromNow()}
+            </Fragment>
+        )
     }
     if (status === "future") {
-        return (<Tag color="orange">Up next</Tag>)
+        return (
+            <Fragment>
+                <Tag color="orange">Up next</Tag>
+                <br />
+                {moment(time).fromNow()}
+            </Fragment>
+        )
     }
-    return (<Tag color="red">Live</Tag>)
+    return (
+        <Fragment>
+            <Tag color="red">Live</Tag>
+            <br />
+            {match.time}
+        </Fragment>
+    )
 }
 
 export default class LiveGame extends React.Component {
@@ -22,22 +42,24 @@ export default class LiveGame extends React.Component {
     }
 
     eventTag(tag) {
-        if(tag == 'goal') {
+        if (tag == 'goal') {
             return (<Tag color="green">Goal</Tag>)
-        } else if(tag == "substitution-in"){
+        } else if (tag == "goal-penalty") {
+            return (<Tag color="blue">Penalty</Tag>)
+        } else if (tag == "substitution-in") {
             return (<Tag color="blue">Sub</Tag>)
-        } else if(tag == "yellow-card"){
+        } else if (tag == "yellow-card") {
             return (<Tag color="orange">Card</Tag>)
-        } else if(tag == "red-card"){
+        } else if (tag == "red-card") {
             return (<Tag color="red">Card</Tag>)
         }
     }
     render() {
         const { home_team, away_team, datetime, status, away_team_events, home_team_events } = this.props.match
-        const time = new Date(datetime)
-        const events = home_team_events.map(a => Object.assign(a, {from:"home"})).concat(
-            away_team_events.map(a => Object.assign(a, {from:"away"}))
+        const events = home_team_events.map(a => Object.assign(a, { from: "home" })).concat(
+            away_team_events.map(a => Object.assign(a, { from: "away" }))
         ).sort((a, b) => parseInt(a.time) - parseInt(b.time))
+        const time = new Date(datetime)
         return (
             <div style={{
                 textAlign: 'center',
@@ -48,24 +70,22 @@ export default class LiveGame extends React.Component {
                     <Flag country={home_team.country} width={70} />
                     <Flag country={away_team.country} width={70} />
                 </div>
-                {makeTag(status)}
-                <br/>
-                {moment(time).fromNow()}
+                {makeTag(this.props.match)}
                 <h2>{home_team.country} vs. {away_team.country}</h2>
                 <h3>{home_team.goals} - {away_team.goals}</h3>
                 <p>{time.getHours()}:{time.getMinutes()}{(() => { if (time.getMinutes() < 10) { return "0" } })()} </p>
                 <div>
-                    {events.map(event => {
+                    {events.map((event, i) => {
                         return ((() => {
                             if (event.from === 'home') {
                                 return (
-                                    <p style={{ textAlign: 'left', paddingLeft:10 }}>
+                                    <p key={i} style={{ textAlign: 'left', paddingLeft: 10 }}>
                                         {event.time} {this.eventTag(event.type_of_event)}
                                     </p>
                                 )
                             }
                             return (
-                                <p style={{ textAlign: 'right', paddingRight:30 }}>
+                                <p key={i} style={{ textAlign: 'right', paddingRight: 30 }}>
                                     {this.eventTag(event.type_of_event)} {event.time}
                                 </p>
                             )

@@ -5,14 +5,34 @@ import moment from 'moment'
 
 const { Meta } = Card
 
-function makeTag(status) {
-    if(status === "completed") {
-        return(<Tag color="green">Completed</Tag>)
+function makeTag(match) {
+    const { status, datetime } = match
+    const time = new Date(datetime)
+    if (status === "completed") {
+        return (
+            <Fragment>
+                <Tag color="green">Completed</Tag>
+                <br />
+                {moment(time).fromNow()}
+            </Fragment>
+        )
     }
-    if(status === "future") {
-        return(<Tag color="orange">Scheduled</Tag>)
+    if (status === "future") {
+        return (
+            <Fragment>
+                <Tag color="orange">Up next</Tag>
+                <br />
+                {moment(time).fromNow()}
+            </Fragment>
+        )
     }
-    return(<Tag color="red">Live</Tag>)
+    return (
+        <Fragment>
+            <Tag color="red">Live</Tag>
+            <br />
+            {moment(time).fromNow()}
+        </Fragment>
+    )
 }
 export default class Game extends React.Component {
     render() {
@@ -26,9 +46,8 @@ export default class Game extends React.Component {
                     <div style={{textAlign:"center"}}>
                         <Flag country={home_team.country} width={80} />
                         <Flag country={away_team.country} width={80} />
-                        {makeTag(status)}
                         <br/>
-                        {moment(time).fromNow()}
+                        {makeTag(this.props.match)}
                         <p>{home_team.goals} - {away_team.goals}</p>
                         <p></p>
                     </div>

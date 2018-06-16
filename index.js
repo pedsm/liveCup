@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { Card, Carousel, Tag } from 'antd'
+import { Card, Carousel, Tag, message } from 'antd'
 import Spin from './components/Spin'
 import Group from './components/Group'
 import Game from './components/Game'
@@ -16,55 +16,72 @@ class App extends React.Component {
       today: [],
       now: []
     }
-    setInterval(() => {
-      this.getGroupData()
-      this.getTodayData()
-      this.getNowData()
-    }, 10 * 1000)
+
+    this.getGroupData()
+    this.getTodayData()
+    this.getNowData()
+    setInterval(this.getGroupData(), 100 * 1000)
+    setInterval(this.getTodayData(), 10 * 1000)
+    setInterval(this.getNowData(), 5 * 1000)
   }
 
   async getGroupData() {
-    console.log('Fetching group data')
-    const response = await fetch('https://worldcup.sfg.io/teams/group_results')
-    const groups = await response.json()
-    this.setState((prev, props) => Object.assign({}, prev, {
-      groups: groups.map(a => a.group),
-    }))
-    console.log('Group data fecthed')
+    message.info('Fetching group data')
+    try {
+      const response = await fetch('https://worldcup.sfg.io/teams/group_results')
+      const groups = await response.json()
+      this.setState((prev, props) => Object.assign({}, prev, {
+        groups: groups.map(a => a.group),
+      }))
+      message.success('Group data fecthed')
+    } catch (e) {
+      message.error('Group data error')
+      console.error(e)
+    }
   }
   async getTodayData() {
-    console.log('Fetching today data')
-    const response = await fetch('https://worldcup.sfg.io/matches/today')
-    const today = await response.json()
-    this.setState((prev, props) => Object.assign({}, prev, {
-      today
-    }))
-    console.log('Today data fecthed')
+    try {
+      message.info('Fetching today data')
+      const response = await fetch('https://worldcup.sfg.io/matches/today')
+      const today = await response.json()
+      this.setState((prev, props) => Object.assign({}, prev, {
+        today: today
+      }))
+      message.success('Today data fecthed')
+    } catch (e) {
+      message.error('Today data error')
+      console.error(e)
+    }
   }
   async getNowData() {
-    console.log('Fetching now data')
-    const response = await fetch('https://worldcup.sfg.io/matches/today')
-    const now = await response.json()
-    this.setState((prev, props) => Object.assign({}, prev, {
-      now
-    }))
-    console.log('Today now fecthed')
+    try {
+      message.info('Fetching now data')
+      const response = await fetch('https://worldcup.sfg.io/matches/current')
+      const now = await response.json()
+      this.setState((prev, props) => Object.assign({}, prev, {
+        now: now
+      }))
+      message.success('Now data fecthed')
+    } catch (e) {
+      message.error('Now data error')
+      console.error(e)
+    }
   }
 
   renderGroupTable() {
     const { groups } = this.state
     if (groups.length > 0) {
-      return(
+      return (
         <Fragment>
-          {groups.map((group, i) => 
-            <Group key={i} group={group} loading={false}/>)
+          {groups.map((group, i) =>
+            <Group key={i} group={group} loading={false} />)
           }
         </Fragment>
       )
     }
     return (
       <Fragment>
-        <Group loading={true}/>
+        <Group loading={true} />
       </Fragment>
     )
   }
@@ -85,25 +102,25 @@ class App extends React.Component {
 
   render() {
     let now = {}
-    if(this.state.now.length > 0) {
+    if (this.state.now.length > 0) {
       now = this.state.now[0]
     } else {
       now = this.state.today.filter(match => match.status != 'completed')[0]
     }
     return (
       <div id="main">
-        <div style={{width: "calc(100% - 300px)"}}>
+        <div style={{ width: "calc(100% - 300px)" }}>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
             <h1 style={{ margin: 0 }}>World Cup Live Dashboard</h1>
           </div>
           <div style={groupTable}>
             {this.renderGroupTable()}
           </div>
-          <div style={{display:'flex'}}>
+          <div style={{ display: 'flex' }}>
             {this.renderGames()}
           </div>
         </div>
-        <div id="current" style={{width: 300, marginTop: 30}}>
+        <div id="current" style={{ width: 300, marginTop: 30 }}>
           {(() => {
             if (this.state.today.length > 0) {
               return (
