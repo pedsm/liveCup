@@ -16,9 +16,11 @@ class App extends React.Component {
       today: [],
       now: []
     }
-    this.getGroupData()
-    this.getTodayData()
-    this.getNowData()
+    setInterval(() => {
+      this.getGroupData()
+      this.getTodayData()
+      this.getNowData()
+    }, 10 * 1000)
   }
 
   async getGroupData() {
