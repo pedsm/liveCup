@@ -25,7 +25,7 @@ class App extends React.Component {
 
   async getGroupData() {
     console.log('Fetching group data')
-    const response = await fetch('http://worldcup.sfg.io/teams/group_results')
+    const response = await fetch('https://worldcup.sfg.io/teams/group_results')
     const groups = await response.json()
     this.setState((prev, props) => Object.assign({}, prev, {
       groups: groups.map(a => a.group),
@@ -34,7 +34,7 @@ class App extends React.Component {
   }
   async getTodayData() {
     console.log('Fetching today data')
-    const response = await fetch('http://worldcup.sfg.io/matches/today')
+    const response = await fetch('https://worldcup.sfg.io/matches/today')
     const today = await response.json()
     this.setState((prev, props) => Object.assign({}, prev, {
       today
@@ -43,7 +43,7 @@ class App extends React.Component {
   }
   async getNowData() {
     console.log('Fetching now data')
-    const response = await fetch('http://worldcup.sfg.io/matches/today')
+    const response = await fetch('https://worldcup.sfg.io/matches/today')
     const now = await response.json()
     this.setState((prev, props) => Object.assign({}, prev, {
       now
