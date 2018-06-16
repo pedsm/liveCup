@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Card, Table } from 'antd'
 import Flag from './Flag'
 
 export default function(props) {
     if(props.loading){
         return (
-            <Card loading={true} title="Group _"></Card>
+            <Fragment>
+                <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card> <Card loading={true} title="Group _"></Card>
+            </Fragment>
         )
     }
     const { group } = props

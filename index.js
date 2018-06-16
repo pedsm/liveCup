@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { Card } from 'antd'
+import { Card, Carousel } from 'antd'
 import Group from './components/Group'
 
 class App extends React.Component {
@@ -46,11 +46,16 @@ class App extends React.Component {
     return (
       <div>
         <div style={{ textAlign: 'center', padding: 10 }}>
-          <h1>World Cup Live Dashboard</h1>
+          <h1 style={{ margin: 0 }}>World Cup Live Dashboard</h1>
         </div>
         <div style={groupTable}>
           {this.renderGroupTable()}
         </div>
+        <Carousel autoplay>
+          <div>Game 1</div>
+          <div>Game 2</div>
+          <div>Game 3</div>
+        </Carousel>
       </div>
     );
   }
