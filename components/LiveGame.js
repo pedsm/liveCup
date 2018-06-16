@@ -79,15 +79,15 @@ export default class LiveGame extends React.Component {
                         return ((() => {
                             if (event.from === 'home') {
                                 return (
-                                    <p key={i} style={{ textAlign: 'left', paddingLeft: 10 }}>
+                                    <div key={i} style={{ textAlign: 'left', paddingLeft: 10 }}>
                                         {event.time} {this.eventTag(event.type_of_event)}
-                                    </p>
+                                    </div>
                                 )
                             }
                             return (
-                                <p key={i} style={{ textAlign: 'right', paddingRight: 30 }}>
+                                <div key={i} style={{ textAlign: 'right', paddingRight: 30 }}>
                                     {this.eventTag(event.type_of_event)} {event.time}
-                                </p>
+                                </div>
                             )
                         })())
                     })}

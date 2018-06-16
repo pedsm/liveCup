@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { Card, Carousel, Tag, message } from 'antd'
+import { Card, Carousel, message } from 'antd'
 import Spin from './components/Spin'
 import Group from './components/Group'
 import Game from './components/Game'
@@ -20,9 +20,9 @@ class App extends React.Component {
     this.getGroupData()
     this.getTodayData()
     this.getNowData()
-    setInterval(this.getGroupData(), 100 * 1000)
-    setInterval(this.getTodayData(), 10 * 1000)
-    setInterval(this.getNowData(), 5 * 1000)
+    setInterval(this.getGroupData.bind(this), 103 * 1000)
+    setInterval(this.getTodayData.bind(this), 35 * 1000)
+    setInterval(this.getNowData.bind(this), 10 * 1000)
   }
 
   async getGroupData() {
