@@ -28,7 +28,7 @@ class App extends React.Component {
   async getGroupData() {
     message.info('Fetching group data')
     try {
-      const response = await fetch('https://worldcup.sfg.io/teams/group_results')
+      const response = await fetch('https://world-cup-json.herokuapp.com/teams/group_results')
       const groups = await response.json()
       this.setState((prev, props) => Object.assign({}, prev, {
         groups: groups.map(a => a.group),
@@ -42,7 +42,7 @@ class App extends React.Component {
   async getTodayData() {
     try {
       message.info('Fetching today data')
-      const response = await fetch('https://worldcup.sfg.io/matches/today')
+      const response = await fetch('https://world-cup-json.herokuapp.com/matches/today')
       const today = await response.json()
       this.setState((prev, props) => Object.assign({}, prev, {
         today: today
@@ -56,7 +56,7 @@ class App extends React.Component {
   async getNowData() {
     try {
       message.info('Fetching now data')
-      const response = await fetch('https://worldcup.sfg.io/matches/current')
+      const response = await fetch('https://world-cup-json.herokuapp.com/matches/current')
       const now = await response.json()
       this.setState((prev, props) => Object.assign({}, prev, {
         now: now
