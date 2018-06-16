@@ -17,6 +17,7 @@ export default function(props) {
                 columns={cols}
                 size="middle"
                 pagination={false}
+                rowKey="id"
             />
         </Card>
 

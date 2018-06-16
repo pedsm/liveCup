@@ -11,9 +11,10 @@ export default function Flag(props){
     }
     return(
         <img 
+            style={{borderRadius:"50%"}}
             src={url}
             width="20px"
-            height="auto"
+            height="20px"
         />
     )
 
