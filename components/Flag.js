@@ -9,12 +9,16 @@ export default function Flag(props){
             url = flag.flag
         }
     }
+    let width = 20
+    if(props.width != null) {
+        width = props.width
+    }
     return(
         <img 
-            style={{borderRadius:"50%"}}
+            style={{borderRadius:"50%", padding:width/5}}
             src={url}
-            width="20px"
-            height="20px"
+            width={width}
+            height={width}
         />
     )
 
