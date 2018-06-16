@@ -70,9 +70,9 @@ class App extends React.Component {
     const { today } = this.state
     if (today.length > 0) {
       return (
-        <Carousel vertical>
+        <Fragment>
           {today.map((match, i) => (<Game key={i} match={match} />))}
-        </Carousel>
+        </Fragment>
       )
     }
     return (<Spin />)
@@ -81,18 +81,18 @@ class App extends React.Component {
   render() {
     return (
       <div id="main">
-        <div>
+        <div style={{width: "calc(100% - 300px)"}}>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
             <h1 style={{ margin: 0 }}>World Cup Live Dashboard</h1>
           </div>
           <div style={groupTable}>
             {this.renderGroupTable()}
           </div>
-          {/* <div style={{width:""}}>
+          <div style={{display:'flex'}}>
             {this.renderGames()}
-          </div> */}
+          </div>
         </div>
-        <div id="current" style={{width: 300}}>
+        <div id="current" style={{width: 300, marginTop: 30}}>
           {(() => {
             if (this.state.today.length > 0) {
               return (
