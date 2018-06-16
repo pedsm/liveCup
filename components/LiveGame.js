@@ -38,7 +38,6 @@ export default class LiveGame extends React.Component {
         const events = home_team_events.map(a => Object.assign(a, {from:"home"})).concat(
             away_team_events.map(a => Object.assign(a, {from:"away"}))
         ).sort((a, b) => parseInt(a.time) - parseInt(b.time))
-        console.log(events)
         return (
             <div style={{
                 textAlign: 'center',

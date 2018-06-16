@@ -11,7 +11,6 @@ export default function(props) {
         )
     }
     const { group } = props
-    console.log(group)
     return(
         <Card title={`Group  ${group.letter}`}>
             <Table 

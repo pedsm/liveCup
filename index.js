@@ -79,7 +79,15 @@ class App extends React.Component {
     return (<Spin />)
   }
 
+
+
   render() {
+    let now = {}
+    if(this.state.now.length > 0) {
+      now = this.state.now[0]
+    } else {
+      now = this.state.today.filter(match => match.status != 'completed')[0]
+    }
     return (
       <div id="main">
         <div style={{width: "calc(100% - 300px)"}}>
@@ -97,7 +105,7 @@ class App extends React.Component {
           {(() => {
             if (this.state.today.length > 0) {
               return (
-                <LiveGame match={this.state.today[0]} />
+                <LiveGame match={now} />
               )
             }
             return (<Spin />)
