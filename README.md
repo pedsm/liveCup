@@ -20,7 +20,7 @@ LiveCup is still in constant update which means the following features will be a
     - [ ] Total cards
     - [ ] Shots
     - [ ] Charts?
-- [ ] Better layout
+- [x] Better layout
 - [ ] Tomorrow's games
 - [ ] In-depth game view
     - [ ] Lineups
