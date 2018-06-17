@@ -100,18 +100,18 @@ class App extends React.Component {
     }
     return (
       <div id="main">
-        <div style={{ width: "calc(100% - 300px)" }}>
+        <div style={{ width: "calc(100% - 300px)", height: "100vh" }}>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
-            <h1 style={{ margin: 0 }}>World Cup Live Dashboard</h1>
+            <h1 style={{ margin: 0 }}>World Cup 2018 Live</h1>
           </div>
           <div style={groupTable}>
             {this.renderGroupTable()}
           </div>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', margin: "auto" }}>
             {this.renderGames()}
           </div>
         </div>
-        <div id="current" style={{ width: 300, marginTop: 30 }}>
+        <div id="current" style={{ width: 300, margin: "auto" }}>
           {(() => {
             if (this.state.today.length > 0) {
               return (

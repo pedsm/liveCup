@@ -67,7 +67,6 @@ export default class LiveGame extends React.Component {
         return (
             <div style={{
                 textAlign: 'center',
-                height: 200,
                 width: "auto",
             }}>
                 <div>
