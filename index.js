@@ -23,47 +23,31 @@ class App extends React.Component {
       now: []
     }
 
-      this.getGroupData()
-      this.getTodayData()
-      this.getNowData()
-      setInterval(this.getGroupData.bind(this), 103 * 1000)
-      setInterval(this.getTodayData.bind(this), 35 * 1000)
-      setInterval(this.getNowData.bind(this), 10 * 1000)
+    this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
+    this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
+    this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
+    setInterval(() => {
+      this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
+      this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
+      this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
+    }, 10 * 1000)
   }
 
-  async getGroupData() {
+  async getDataAs(apiUrl, label, name) {
     try {
-      const response = await fetch('https://world-cup-json.herokuapp.com/teams/group_results')
-      const groups = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, { groups: groups.map(a => a.group), }))
+      const response = await fetch(apiUrl)
+      const json = await response.json()
+      const obj = {}
+      obj[label] = json
+      this.setState((prev, props) => Object.assign({}, prev, obj))
     } catch (e) {
-      message.error('Group data error')
-      console.error(e)
-    }
-  }
-  async getTodayData() {
-    try {
-      const response = await fetch('https://world-cup-json.herokuapp.com/matches/today')
-      const today = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, { today: today }))
-    } catch (e) {
-      message.error('Today data error')
-      console.error(e)
-    }
-  }
-  async getNowData() {
-    try {
-      const response = await fetch('https://world-cup-json.herokuapp.com/matches/current')
-      const now = await response.json()
-      this.setState((prev, props) => Object.assign({}, prev, { now: now }))
-    } catch (e) {
-      message.error('Now data error')
+      message.error(`${name} data error`)
       console.error(e)
     }
   }
 
   renderGroupTable() {
-    const { groups } = this.state
+    const groups = this.state.groups.map(a => a.group)
     if (groups.length > 0) {
       return (
         <Fragment>
@@ -110,11 +94,7 @@ class App extends React.Component {
     }
     return (
       <div id="main">
-        <div style={{ 
-          width: "calc(100% - 300px)",
-          height: "100vh",
-          display: "grid"
-        }}>
+        <div>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
             <h1 style={{ margin: 0 }}>World Cup 2018 Live</h1>
           </div>
@@ -138,6 +118,12 @@ class App extends React.Component {
       </div>
     );
   }
+}
+
+const mainContent = {
+  width: "calc(100% - 300px)",
+  height: "100vh",
+  display: "grid"
 }
 
 const groupTable = {
