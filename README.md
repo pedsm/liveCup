@@ -15,16 +15,16 @@ In order to accelerate development liveCup is also fully built with [Ant Design]
 ## Planned features
 LiveCup is still in constant update which means the following features will be added in a timetly manner, you can check the repo for mor information on these updates.
 
-- [ ] Current game stats
-    - [ ] Possesion
+- [ ] Server status
+- [ ] In-depth game view
+    - [x] Possesion
     - [ ] Total cards
     - [ ] Shots
     - [ ] Charts?
-- [x] Better layout
-- [ ] Tomorrow's games
-- [ ] In-depth game view
     - [ ] Lineups
     - [ ] Players on events
+- [x] Better layout
+- [ ] Tomorrow's games
 - [ ] In-depth team view
 - [x] Notifications
 - [ ] Better Mobile Support
