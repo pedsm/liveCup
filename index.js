@@ -6,7 +6,8 @@ import {
   Carousel,
   message,
   Row,
-  Col
+  Col,
+  Modal
 } from 'antd'
 import Spin from './components/Spin'
 import Group from './components/Group'
@@ -15,14 +16,18 @@ import LiveGame from './components/LiveGame'
 import News from './components/News'
 
 class App extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
       groups: [],
       today: [],
       now: [],
-      news: []
+      news: [],
+      modal: {
+        open: true,
+        title: "Game",
+        content: <h1>Loading...</h1>
+      }
     }
 
     this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", (a) => a.map(a => a.group))
@@ -88,6 +93,17 @@ class App extends React.Component {
     return (<Spin />)
   }
 
+  openModal(title, content) {
+    this.setState((prev, props) => (
+      Object.assign(prev, {
+        modal: {
+          open: true,
+          title,
+          content
+        }
+      })
+    ))
+  }
 
 
   render() {
@@ -102,6 +118,14 @@ class App extends React.Component {
     }
     return (
       <div id="main">
+        <Modal
+          title={this.state.modal.title}
+          visible={this.state.modal.open}
+          onOk={() => this.setState((prev, props) => (Object.assign(prev, { modal:{ open: !prev.modal.open }})))}
+          onCancel={() => this.setState((prev, props) => (Object.assign(prev, { modal:{ open: !prev.modal.open }})))}
+        >
+          {this.state.modal.content}
+        </Modal>
         <News news={this.state.news} />
         <div style={mainContent}>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
