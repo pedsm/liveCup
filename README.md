@@ -26,7 +26,7 @@ LiveCup is still in constant update which means the following features will be a
     - [ ] Lineups
     - [ ] Players on events
 - [ ] In-depth team view
-- [ ] Notifications
+- [x] Notifications
 - [ ] Better Mobile Support
 - [ ] Possible PWA integration
 
@@ -35,4 +35,4 @@ Feature requests will also be taken as issues.
 ## Possible updates if API support is found
 - [ ] Injury information
 - [ ] Highligths
-- [ ] News
+- [x] News

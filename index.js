@@ -12,6 +12,7 @@ import Spin from './components/Spin'
 import Group from './components/Group'
 import Game from './components/Game'
 import LiveGame from './components/LiveGame'
+import News from './components/News'
 
 class App extends React.Component {
 
@@ -20,25 +21,32 @@ class App extends React.Component {
     this.state = {
       groups: [],
       today: [],
-      now: []
+      now: [],
+      news: []
     }
 
-    this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
+    this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", (a) => a.map(a => a.group))
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
+    this.getDataAs('https://fifa-2018-apis.herokuapp.com/fifa/news', "news", "News", a => a.data)
     setInterval(() => {
-      this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
+      this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", a => a.map(a => a.group))
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
+      this.getDataAs('https://fifa-2018-apis.herokuapp.com/fifa/news', "news", "News", a => a.data)
     }, 10 * 1000)
   }
 
-  async getDataAs(apiUrl, label, name) {
+  async getDataAs(apiUrl, label, name, modifier) {
     try {
       const response = await fetch(apiUrl)
       const json = await response.json()
       const obj = {}
-      obj[label] = json
+      if (modifier != null) {
+        obj[label] = modifier(json)
+      } else {
+        obj[label] = json
+      }
       this.setState((prev, props) => Object.assign({}, prev, obj))
     } catch (e) {
       message.error(`${name} data error`)
@@ -47,7 +55,7 @@ class App extends React.Component {
   }
 
   renderGroupTable() {
-    const groups = this.state.groups.map(a => a.group)
+    const { groups } = this.state
     if (groups.length > 0) {
       return (
         <Fragment>
@@ -94,7 +102,8 @@ class App extends React.Component {
     }
     return (
       <div id="main">
-        <div>
+        <News news={this.state.news} />
+        <div style={mainContent}>
           <div id="header" style={{ textAlign: 'center', padding: 10 }}>
             <h1 style={{ margin: 0 }}>World Cup 2018 Live</h1>
           </div>
@@ -104,6 +113,8 @@ class App extends React.Component {
           <Row style={{ marginTop: "auto", marginBottom: "auto" }}>
             {this.renderGames()}
           </Row>
+          <div style={{width: 300}}>
+          </div>
         </div>
         <div id="current" style={{ width: 300, margin: "auto" }}>
           {(() => {
