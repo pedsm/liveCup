@@ -24,7 +24,7 @@ class App extends React.Component {
       now: [],
       news: [],
       modal: {
-        open: true,
+        open: false,
         title: "Game",
         content: <h1>Loading...</h1>
       }
@@ -119,6 +119,7 @@ class App extends React.Component {
     return (
       <div id="main">
         <Modal
+          width="90%"
           title={this.state.modal.title}
           visible={this.state.modal.open}
           onOk={() => this.setState((prev, props) => (Object.assign(prev, { modal:{ open: !prev.modal.open }})))}
@@ -144,7 +145,7 @@ class App extends React.Component {
           {(() => {
             if (this.state.today.length > 0) {
               return (
-                <LiveGame match={now} />
+                <LiveGame match={now} modal={this.openModal.bind(this)}/>
               )
             }
             return (<Spin />)

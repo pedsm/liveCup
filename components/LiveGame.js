@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
 import Flag from './Flag'
-import { Tag } from 'antd'
+import {
+    Tag,
+    Progress
+} from 'antd'
 import moment from 'moment'
 
 function makeTag(match) {
@@ -58,6 +61,33 @@ export default class LiveGame extends React.Component {
             return (<Tag color="red">Card</Tag>)
         }
     }
+
+    handleModal() {
+        const { modal } = this.props
+        const { 
+            home_team,
+            home_team_statistics,
+            away_team,
+            away_team_statistics,
+        } = this.props.match
+        modal(`${home_team.country} vs. ${away_team.country}`, (
+            <div style={{ 
+                display: 'grid',
+                gridTemplateColumns: "1fr 1fr 1fr"
+            }}>
+                <div>
+                    <h3>{home_team.country} Stats.</h3>
+                    <div>
+                        <Progress type="dashboard" percent={home_team_statistics.ball_possession} width={80} />
+                        Ball possession
+                    </div>
+                </div>
+                <LiveGame match={this.props.match} modal={() => { }} />
+                <div>Away</div>
+            </div>
+        ))
+    }
+
     render() {
         const { home_team, away_team, datetime, status, away_team_events, home_team_events } = this.props.match
         const events = home_team_events.map(a => Object.assign(a, { from: "home" })).concat(
@@ -65,10 +95,10 @@ export default class LiveGame extends React.Component {
         ).sort((a, b) => parseInt(a.time) - parseInt(b.time))
         const time = new Date(datetime)
         return (
-            <div style={{
-                textAlign: 'center',
-                width: "auto",
-            }}>
+            <div 
+                style={{ textAlign: 'center', width: "auto", }}
+                onClick={this.handleModal.bind(this)}
+            >
                 <div>
                     <Flag country={home_team.country} width={120} />
                     <Flag country={away_team.country} width={120} />
