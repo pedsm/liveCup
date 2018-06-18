@@ -17,6 +17,7 @@ LiveCup is still in constant update which means the following features will be a
 
 - [ ] Server status
 - [ ] In-depth game view
+    - [ ] Button to open it
     - [x] Possesion
     - [ ] Total cards
     - [ ] Shots
