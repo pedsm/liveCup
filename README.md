@@ -2,6 +2,8 @@
 
 LiveCup is a live World Cup 2018 dashboard designed for TVs and Monitors, once the dashboard is open it will update information on a minute by minute basis about the following:
 
+![Group satge Screenshot](imgs/screen_1.png)
+
 1. Group stage standings
 2. Today's Games
 3. Current game in depth information
