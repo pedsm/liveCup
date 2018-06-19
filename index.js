@@ -84,7 +84,7 @@ class App extends React.Component {
         <Fragment >
           {today.map((match, i) => (
             <Col key={i} span={8}>
-              <Game match={match} />
+              <Game match={match} modal={this.openModal.bind(this)}/>
             </Col>
           ))}
         </Fragment>

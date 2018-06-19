@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import Flag from './Flag'
 import {
     Tag,
-    Progress
+    Progress,
+    Button
 } from 'antd'
 import moment from 'moment'
 
@@ -97,7 +98,6 @@ export default class LiveGame extends React.Component {
         return (
             <div 
                 style={{ textAlign: 'center', width: "auto", }}
-                onClick={this.handleModal.bind(this)}
             >
                 <div>
                     <Flag country={home_team.country} width={120} />
@@ -105,8 +105,15 @@ export default class LiveGame extends React.Component {
                 </div>
                 {makeTag(this.props.match)}
                 <h2>{home_team.country} vs. {away_team.country}</h2>
-                <h3>{home_team.goals} - {away_team.goals}</h3>
+                <h1>{home_team.goals} - {away_team.goals}</h1>
                 <p>{time.getHours()}:{time.getMinutes()}{(() => { if (time.getMinutes() < 10) { return "0" } })()} </p>
+                {
+                    this.props.mini != true
+                    ? this.props.match.home_team_statistics != null 
+                            ? <Button onClick={this.handleModal.bind(this)}>Details</Button>
+                            : <Button disabled>Details coming soon</Button>
+                    : <span/>
+                }
                 <div>
                     {events.map((event, i) => {
                         return ((() => {
