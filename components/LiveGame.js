@@ -77,14 +77,12 @@ export default class LiveGame extends React.Component {
                 gridTemplateColumns: "1fr 1fr 1fr"
             }}>
                 <div>
-                    <h3>{home_team.country} Stats.</h3>
-                    <div>
-                        <Progress type="dashboard" percent={home_team_statistics.ball_possession} width={80} />
-                        Ball possession
-                    </div>
+                    <Stats team={home_team.country} stats={home_team_statistics}/>
                 </div>
-                <LiveGame match={this.props.match} modal={() => { }} />
-                <div>Away</div>
+                <LiveGame match={this.props.match} mini={true} modal={() => { }} />
+                <div>
+                    <Stats team={away_team.country} stats={away_team_statistics}/>
+                </div>
             </div>
         ))
     }
