@@ -5,6 +5,7 @@ import {
     Progress,
     Button
 } from 'antd'
+import Stats from './Stats'
 import moment from 'moment'
 
 function makeTag(match) {
