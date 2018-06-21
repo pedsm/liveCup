@@ -73,7 +73,7 @@ export default class Game extends React.Component {
         return (
             <Card
                 hoverable
-                style={{ width: 240, margin: 'auto' }}
+                style={{ width: 240, margin: '10px auto' }}
                 cover={
                     <div style={{ textAlign: "center" }}>
                         <Flag country={home_team.country} width={80} />

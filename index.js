@@ -21,6 +21,7 @@ class App extends React.Component {
     this.state = {
       groups: [],
       today: [],
+      tmr: [],
       now: [],
       news: [],
       modal: {
@@ -32,14 +33,16 @@ class App extends React.Component {
 
     this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", (a) => a.map(a => a.group))
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
+    this.getDataAs('https://world-cup-json.herokuapp.com/matches/tomorrow', "tmr", "Tomorrow")
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
     this.getDataAs('https://fifa-2018-apis.herokuapp.com/fifa/news', "news", "News", a => a.data)
     setInterval(() => {
       this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", a => a.map(a => a.group))
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
+      this.getDataAs('https://world-cup-json.herokuapp.com/matches/tomorrow', "tomorrow", "Tomorrow")
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
       this.getDataAs('https://fifa-2018-apis.herokuapp.com/fifa/news', "news", "News", a => a.data)
-    }, 10 * 1000)
+    }, 60 * 1000)
   }
 
   async getDataAs(apiUrl, label, name, modifier) {
@@ -144,6 +147,12 @@ class App extends React.Component {
         <div id="current" style={{ width: 300, margin: "auto" }}>
           {(() => {
             if (this.state.today.length > 0) {
+              const time = new Date(now.datetime)
+              if ((time - Date.now()) / 60000 < -150 && this.state.tmr.length > 0) {
+              // if(true) {
+                //console.log("show")
+                return (this.state.tmr.map(match => <Game match={match} />))
+              }
               return (
                 <LiveGame match={now} modal={this.openModal.bind(this)}/>
               )

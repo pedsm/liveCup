@@ -27,7 +27,7 @@ LiveCup is still in constant update which means the following features will be a
     - [ ] Lineups
     - [ ] Players on events
 - [x] Better layout
-- [ ] Tomorrow's games
+- [x] Tomorrow's games
 - [ ] In-depth team view
 - [x] Notifications
 - [ ] Better Mobile Support

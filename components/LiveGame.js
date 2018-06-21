@@ -113,7 +113,7 @@ export default class LiveGame extends React.Component {
                             : <Button disabled>Details coming soon</Button>
                     : <span/>
                 }
-                <div>
+                <div style={{ marginTop: 10 }}>
                     {events.map((event, i) => {
                         return ((() => {
                             if (event.from === 'home') {
