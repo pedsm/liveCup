@@ -57,7 +57,7 @@ export default class LiveGame extends React.Component {
             return (<Tag color="blue">Sub In</Tag>)
         } else if (tag == "substitution-out") {
             return (<Tag color="blue">Sub Out</Tag>)
-        } else if (tag == "yellow-card") {
+        } else if (tag == "yellow-card" || tag == "yellow-card-second") {
             return (<Tag color="orange">Card</Tag>)
         } else if (tag == "red-card") {
             return (<Tag color="red">Card</Tag>)
