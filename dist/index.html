@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>World Cup live stats</title>
-  <link rel="stylesheet" href="index.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120911908-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-120911908-1');
-  </script>
+    <title>A web page that points a browser to a different page after 2 seconds</title>
+    <meta http-equiv="refresh" content="2; URL=../">
+    <meta name="keywords" content="automatic redirection">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        div {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
 </head>
+
 <body>
-
-<div id="root"></div>
-
-<script src="common.js"></script>
-<script src="index.js"></script>
-
-</body>
+    <div>
+        <h1>Live Cup has moved to a new address</h1>
+        <p>
+            If your browser doesn't automatically go there within a few seconds, you may want to go to
+            <a href="../">the destination</a> manually.
+        </p>
+    </div>
+    </body>
 </html>

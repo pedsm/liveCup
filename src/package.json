@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "build": "atool-build",
+    "deploy": "mv ./dist/* ../",
     "lint": "eslint --ext .js,.jsx src/",
     "start": "dora --plugins webpack",
     "test": "atool-test-mocha ./**/__tests__/*-test.js"
