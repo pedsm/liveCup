@@ -11,10 +11,11 @@ export default function(props) {
         )
     }
     const { group } = props
+    console.log(group)
     return(
         <Card title={`Group  ${group.letter}`}>
             <Table 
-                dataSource={group.teams.map(a => a.team)}
+                dataSource={group.ordered_teams}
                 columns={cols}
                 size="middle"
                 pagination={false}

@@ -31,13 +31,13 @@ class App extends React.Component {
       }
     }
 
-    this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", (a) => a.map(a => a.group))
+    this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/tomorrow', "tmr", "Tomorrow")
     this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
     this.getDataAs('https://fifa-2018-apis.herokuapp.com/fifa/news', "news", "News", a => a.data)
     setInterval(() => {
-      this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group", a => a.map(a => a.group))
+      this.getDataAs('https://world-cup-json.herokuapp.com/teams/group_results', "groups", "Group")
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/today', "today", "Today")
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/tomorrow', "tomorrow", "Tomorrow")
       this.getDataAs('https://world-cup-json.herokuapp.com/matches/current', "now", "Now")
@@ -86,7 +86,7 @@ class App extends React.Component {
       return (
         <Fragment >
           {today.map((match, i) => (
-            <Col key={i} span={8}>
+            <Col key={i} span={6}>
               <Game match={match} modal={this.openModal.bind(this)}/>
             </Col>
           ))}
