@@ -35,13 +35,13 @@ export interface Match {
     datetime:          string;
     winner:            null;
     winner_code:       null;
-    home_team:         Team;
-    away_team:         Team;
+    home_team:         TeamReport;
+    away_team:         TeamReport;
     last_checked_at:   string;
     last_changed_at:   string;
 }
 
-export interface Team {
+export interface TeamReport {
     country:   string;
     name:      string;
     goals:     null;
