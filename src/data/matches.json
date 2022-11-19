@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "venue": "Al Bayt Stadium",
+        "location": "Al Khor",
+        "status": "future_scheduled",
+        "attendance": null,
+        "officials": [],
+        "stage_name": "First stage",
+        "home_team_country": "QAT",
+        "away_team_country": "ECU",
+        "datetime": "2022-11-20T16:00:00Z",
+        "winner": null,
+        "winner_code": null,
+        "home_team": {
+            "country": "QAT",
+            "name": "Qatar",
+            "goals": null,
+            "penalties": null
+        },
+        "away_team": {
+            "country": "ECU",
+            "name": "Ecuador",
+            "goals": null,
+            "penalties": null
+        },
+        "last_checked_at": "2022-11-19T20:20:00Z",
+        "last_changed_at": "2022-11-19T20:20:00Z"
+    },
+    {
+        "id": 2,
+        "venue": "Khalifa International Stadium",
+        "location": "Ar-Rayyan",
+        "status": "future_scheduled",
+        "attendance": null,
+        "officials": [],
+        "stage_name": "First stage",
+        "home_team_country": "ENG",
+        "away_team_country": "IRN",
+        "datetime": "2022-11-21T13:00:00Z",
+        "winner": null,
+        "winner_code": null,
+        "home_team": {
+            "country": "ENG",
+            "name": "England",
+            "goals": null,
+            "penalties": null
+        },
+        "away_team": {
+            "country": "IRN",
+            "name": "Iran",
+            "goals": null,
+            "penalties": null
+        },
+        "last_checked_at": "2022-11-19T20:10:03Z",
+        "last_changed_at": "2022-11-16T05:40:00Z"
+    },
+    {
+        "id": 3,
+        "venue": "Al Thumama Stadium",
+        "location": "Doha",
+        "status": "future_scheduled",
+        "attendance": null,
+        "officials": [],
+        "stage_name": "First stage",
+        "home_team_country": "SEN",
+        "away_team_country": "NED",
+        "datetime": "2022-11-21T16:00:00Z",
+        "winner": null,
+        "winner_code": null,
+        "home_team": {
+            "country": "SEN",
+            "name": "Senegal",
+            "goals": null,
+            "penalties": null
+        },
+        "away_team": {
+            "country": "NED",
+            "name": "Netherlands",
+            "goals": null,
+            "penalties": null
+        },
+        "last_checked_at": "2022-11-19T20:10:03Z",
+        "last_changed_at": "2022-11-16T05:40:00Z"
+    }
+]
