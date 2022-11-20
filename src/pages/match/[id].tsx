@@ -1,6 +1,6 @@
 import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
 import { countryToFlag } from "flags"
-import { useMatches } from "hooks"
+import { useTodaysMatches } from "hooks"
 import type { NextPage } from "next"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -9,7 +9,7 @@ const MatchStats: NextPage = () => {
   const router = useRouter()
   const matchId = router.query.id
 
-  const { data: matches } = useMatches()
+  const { data: matches } = useTodaysMatches()
 
   const match = matches?.find((match) => match.id.toString() === matchId)
 

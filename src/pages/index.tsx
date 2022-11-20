@@ -43,9 +43,7 @@ const Home: NextPage = () => {
           <Flex flexDir={"column"} gap={8}>
             {currentMatches &&
               currentMatches.map((match) => (
-                <Link key={match.id} href={`/match/${match.id}`}>
-                  <MatchCard isLive  match={match} />
-                </Link>
+                <MatchCard key={match.id} isLive match={match} />
               ))}
             {todayMatches &&
               todayMatches.map((match) => (
@@ -55,9 +53,7 @@ const Home: NextPage = () => {
               ))}
             {tomorrowsMatches &&
               tomorrowsMatches.map((match) => (
-                <Link key={match.id} href={`/match/${match.id}`}>
-                  <MatchCard match={match} />
-                </Link>
+                <MatchCard key={match.id} match={match} />
               ))}
           </Flex>
         </Grid>
