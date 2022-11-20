@@ -1,7 +1,7 @@
 import { Flex, Grid } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
-import { GroupTable, GroupTableSkeleton } from "components/GroupTables"
+import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
 import { useGroups, useMatches } from "hooks"
 import { MatchCard } from "components/MatchCard"
 import Link from "next/link"
