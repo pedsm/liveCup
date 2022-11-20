@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { fetchGroups, fetchTodaysMatches } from "services/api"
+import { fetchCurrentMatches, fetchGroups, fetchTodaysMatches, fetchTomorrowsMatches } from "services/api"
 
 export interface Group {
   letter: string;
@@ -72,6 +72,12 @@ export function useGroups() {
   return useQuery<Group[]>(["groups"], fetchGroups)
 }
 
-export function useMatches() {
-  return useQuery<Match[]>(["matches"], fetchTodaysMatches)
+export function useTodaysMatches() {
+  return useQuery<Match[]>(["todaysMatches"], fetchTodaysMatches)
+}
+export function useCurrentMatches() {
+  return useQuery<Match[]>(["currentMatches"], fetchCurrentMatches)
+}
+export function useTomorrowsMatches() {
+  return useQuery<Match[]>(["tomorrowsMatches"], fetchTomorrowsMatches)
 }

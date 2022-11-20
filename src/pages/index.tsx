@@ -2,13 +2,16 @@ import { Flex, Grid } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
-import { useGroups, useMatches } from "hooks"
+import { useCurrentMatches, useGroups, useTodaysMatches, useTomorrowsMatches } from "hooks"
 import { MatchCard } from "components/MatchCard"
 import Link from "next/link"
 
 const Home: NextPage = () => {
   const { data: groups, isLoading: groupsIsLoading } = useGroups()
-  const { data: todayMatches } = useMatches()
+  const { data: todayMatches } = useTodaysMatches()
+  const { data: currentMatches } = useCurrentMatches()
+  const { data: tomorrowsMatches } = useTomorrowsMatches()
+
 
 
   console.log(groups)
@@ -38,8 +41,20 @@ const Home: NextPage = () => {
             )}
           </Grid>
           <Flex flexDir={"column"} gap={8}>
+            {currentMatches &&
+              currentMatches.map((match) => (
+                <Link key={match.id} href={`/match/${match.id}`}>
+                  <MatchCard isLive  match={match} />
+                </Link>
+              ))}
             {todayMatches &&
               todayMatches.map((match) => (
+                <Link key={match.id} href={`/match/${match.id}`}>
+                  <MatchCard match={match} />
+                </Link>
+              ))}
+            {tomorrowsMatches &&
+              tomorrowsMatches.map((match) => (
                 <Link key={match.id} href={`/match/${match.id}`}>
                   <MatchCard match={match} />
                 </Link>
