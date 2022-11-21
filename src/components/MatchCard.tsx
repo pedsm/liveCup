@@ -3,9 +3,19 @@ import { countryToFlag } from "flags"
 import { Match } from "hooks"
 import { DateTime } from "luxon"
 
-export const MatchCard = ({ match, isLive }: { match: Match; isLive?: boolean }) => {
+export const MatchCard = ({
+  match,
+  isLive,
+}: {
+  match: Match;
+  isLive?: boolean;
+}) => {
   return (
     <Card p={"1em"}>
+      <Tag mx="auto" colorScheme="blackAlpha">
+        {match.stage_name}
+      </Tag>
+
       <Box display={"grid"} gap={"1em"} gridTemplateColumns={"1fr 1fr 1fr"}>
         <Box textAlign={"right"}>
           <Text fontSize={"4xl"}>{countryToFlag(match.home_team_country)}</Text>
@@ -21,6 +31,7 @@ export const MatchCard = ({ match, isLive }: { match: Match; isLive?: boolean })
           <Text fontSize={"2xl"}>{match.away_team.goals ?? 0}</Text>
         </Box>
       </Box>
+
       <Text mt={4} color={"gray.600"} textAlign={"center"}>
         {match.venue} <br /> {match.location}
       </Text>
