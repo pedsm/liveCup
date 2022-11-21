@@ -46,11 +46,18 @@ const Home: NextPage = () => {
                 <MatchCard key={match.id} isLive match={match} />
               ))}
             {todayMatches &&
-              todayMatches.map((match) => (
-                <Link key={match.id} href={`/match/${match.id}`}>
-                  <MatchCard match={match} />
-                </Link>
-              ))}
+              todayMatches
+                .filter(
+                  (match) =>
+                    !currentMatches?.find(
+                      (curMatch) => curMatch.id === match.id
+                    )
+                )
+                .map((match) => (
+                  <Link key={match.id} href={`/match/${match.id}`}>
+                    <MatchCard match={match} />
+                  </Link>
+                ))}
             {tomorrowsMatches &&
               tomorrowsMatches.map((match) => (
                 <MatchCard key={match.id} match={match} />
