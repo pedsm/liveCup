@@ -1,7 +1,7 @@
 import { Badge, Box, Card, Tag, Text } from "@chakra-ui/react"
 import { countryToFlag } from "flags"
 import { DateTime } from "luxon"
-import { Match } from "services/types";
+import { Match } from "services/types"
 
 export const MatchCard = ({
   match,
