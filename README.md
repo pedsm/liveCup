@@ -5,7 +5,6 @@
 
 LiveCup is a live World Cup 2022 dashboard designed for TVs and Monitors, once the dashboard is open it will update information on a minute by minute basis about the following:
 
-Replace the image below
 ![Group stage Screenshot](.github/2022.png)
 
 1. Group stage standings
