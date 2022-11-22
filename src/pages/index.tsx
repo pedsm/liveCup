@@ -1,20 +1,17 @@
-import { Flex, Grid } from "@chakra-ui/react"
+import { Box, Grid, Text } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
-import { useCurrentMatches, useGroups, useTodaysMatches, useTomorrowsMatches } from "hooks"
+import { useCurrentMatches, useGroups, useIsGameLive, useTodaysMatches, useTomorrowsMatches } from "hooks"
 import { MatchCard } from "components/MatchCard"
 import Link from "next/link"
+import { getFood } from "food"
 
 const Home: NextPage = () => {
   const { data: groups, isLoading: groupsIsLoading } = useGroups()
   const { data: todayMatches } = useTodaysMatches()
   const { data: currentMatches } = useCurrentMatches()
   const { data: tomorrowsMatches } = useTomorrowsMatches()
-
-
-
-  console.log(groups)
 
   return (
     <div>
@@ -24,8 +21,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Grid p={8} gap={8} gridTemplateColumns="4fr 1fr">
-          <Grid gap={8} gridTemplateColumns="1fr 1fr" maxH="100vh">
+          <Grid className="tables" gap={8} gridTemplateColumns="1fr 1fr">
             {groupsIsLoading ? (
               <>
                 {new Array(8).fill(0).map((_t, i) => (
@@ -40,29 +36,30 @@ const Home: NextPage = () => {
               </>
             )}
           </Grid>
-          <Flex flexDir={"column"} gap={8}>
-            {currentMatches &&
-              currentMatches.map((match) => (
+          <Grid className="current" templateColumns={'1fr'} flexDir={"column"} gap={2}>
+            {currentMatches != null && currentMatches?.length != 0
+              ? currentMatches.map((match) => (
                 <MatchCard key={match.id} isLive match={match} />
+              ))
+            : (<Box my="auto">
+              <Text textAlign={'center'} fontSize={'8xl'}>{getFood()}</Text>
+              <Text textAlign={'center'}>No game is current live</Text>
+            </Box>)
+          }
+
+        </Grid>
+        <Grid gridAutoFlow={'column'} className="upcoming" gap={'1em'}>
+          {todayMatches &&
+            todayMatches
+              .map((match) => (
+                <Link key={match.id} href={`/match/${match.id}`}>
+                  <MatchCard match={match} mini />
+                </Link>
               ))}
-            {todayMatches &&
-              todayMatches
-                .filter(
-                  (match) =>
-                    !currentMatches?.find(
-                      (curMatch) => curMatch.id === match.id
-                    )
-                )
-                .map((match) => (
-                  <Link key={match.id} href={`/match/${match.id}`}>
-                    <MatchCard match={match} />
-                  </Link>
-                ))}
-            {tomorrowsMatches &&
-              tomorrowsMatches.map((match) => (
-                <MatchCard key={match.id} match={match} />
-              ))}
-          </Flex>
+          {tomorrowsMatches &&
+            tomorrowsMatches.map((match) => (
+              <MatchCard key={match.id} match={match} mini />
+            ))}
         </Grid>
       </main>
     </div>

@@ -1,17 +1,38 @@
-import { Box, Card, Tag, Text } from "@chakra-ui/react"
+import { Badge, Box, Card, Tag, Text } from "@chakra-ui/react"
 import { countryToFlag } from "flags"
-import { Match } from "hooks"
 import { DateTime } from "luxon"
+import { Match } from "services/types"
 
 export const MatchCard = ({
   match,
   isLive,
+  mini,
 }: {
   match: Match;
   isLive?: boolean;
+  mini?: boolean
 }) => {
+  if (mini) {
+    return (
+      <Card p={'1em'} w={'10em'} textAlign={'center'}>
+        <Text fontSize={'4xl'}>{countryToFlag(match.home_team_country)} {countryToFlag(match.away_team_country)}</Text>
+        <Text><Badge>{match.home_team_country}</Badge> - <Badge>{match.away_team_country}</Badge></Text>
+        <Text fontSize={'2xl'}>{match.home_team.goals} - {match.away_team.goals}</Text>
+        {isLive ? (
+          <Text mx="auto" mt={2} textAlign="center">
+            <Badge colorScheme={'red'}>
+              Live
+            </Badge>
+          </Text>
+        ) : (
+          <Text textAlign="center" fontSize="xs" mt={2}>
+            {DateTime.fromISO(match.datetime).toRelative()}
+          </Text>)}
+      </Card>
+    )
+  }
   return (
-    <Card p={"1em"}>
+    <Card p={"1em"} h={'fit-content'}>
       <Tag mx="auto" colorScheme="blackAlpha">
         {match.stage_name}
       </Tag>
@@ -36,8 +57,10 @@ export const MatchCard = ({
         {match.venue} <br /> {match.location}
       </Text>
       {isLive ? (
-        <Text mx="auto" mt={2} textAlign="center" fontSize="xs">
-          🔴 Live
+        <Text mx="auto" mt={2} textAlign="center">
+          <Badge colorScheme={'red'}>
+            Live
+          </Badge>
         </Text>
       ) : (
         <Text textAlign="center" fontSize="xs" mt={2}>

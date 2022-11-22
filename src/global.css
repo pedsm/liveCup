@@ -1,0 +1,43 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  padding: 1em;
+  width: 100%;
+  height: 100vh;
+  display: grid !important;
+  grid-template-areas: 
+    "tables tables tables tables current"
+    "tables tables tables tables current"
+    "tables tables tables tables current"
+    "tables tables tables tables current"
+    "upcoming upcoming upcoming upcoming upcoming"
+  ;
+  gap: 1em;
+  /* overflow: hidden; */
+}
+
+.tables {
+    grid-area: tables;
+}
+
+.current {
+    grid-area: current;
+}
+
+.upcoming {
+    grid-area: upcoming;
+}
+
+.linkFix {
+    display: flex;
+}
