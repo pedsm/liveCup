@@ -43,7 +43,7 @@ const Home: NextPage = () => {
               ))
             : (<Box my="auto">
               <Text textAlign={'center'} fontSize={'8xl'}>{getFood()}</Text>
-              <Text textAlign={'center'}>No game is current live</Text>
+              <Text textAlign={'center'}>No game is currently live</Text>
             </Box>)
           }
 
