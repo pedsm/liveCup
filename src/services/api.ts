@@ -79,6 +79,16 @@ export class WorldCupService {
       await sleep(50)
     }
     return this.state.groups.groups
+      .map(group => {
+        group.teams.sort((a,b) => {
+          const pointsDiff = b.group_points - a.group_points
+          if(pointsDiff !== 0) {
+            return pointsDiff
+          }
+          return (b.goals_for - b.goals_against) - (a.goals_for - b.goals_against)
+        })
+        return group
+      })
   }
 
   async fetchTodaysMatches() {

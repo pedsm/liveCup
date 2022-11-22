@@ -5,6 +5,7 @@ import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
 import { useCurrentMatches, useGroups, useIsGameLive, useTodaysMatches, useTomorrowsMatches } from "hooks"
 import { MatchCard } from "components/MatchCard"
 import Link from "next/link"
+import { getFood } from "food"
 
 const Home: NextPage = () => {
   const { data: groups, isLoading: groupsIsLoading } = useGroups()
@@ -41,7 +42,7 @@ const Home: NextPage = () => {
                 <MatchCard key={match.id} isLive match={match} />
               ))
             : (<Box my="auto">
-              <Text textAlign={'center'} fontSize={'8xl'}>🍕</Text>
+              <Text textAlign={'center'} fontSize={'8xl'}>{getFood()}</Text>
               <Text textAlign={'center'}>No game is current live</Text>
             </Box>)
           }
@@ -57,9 +58,7 @@ const Home: NextPage = () => {
               ))}
           {tomorrowsMatches &&
             tomorrowsMatches.map((match) => (
-              <Link key={match.id} href={`/match/${match.id}`} className={'linkFix'}>
-                <MatchCard key={match.id} match={match} mini />
-              </Link>
+              <MatchCard key={match.id} match={match} mini />
             ))}
         </Grid>
       </main>

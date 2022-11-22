@@ -27,7 +27,7 @@ export function GroupTable({ group }: { group: Group }) {
             <Td isNumeric>{team.wins}</Td>
             <Td isNumeric>{team.draws}</Td>
             <Td isNumeric>{team.losses}</Td>
-            <Td isNumeric>{team.goal_differential}</Td>
+            <Td isNumeric>{team.goals_for - team.goals_against}</Td>
             <Td isNumeric>{team.group_points}</Td>
           </Tr>
         ))}
