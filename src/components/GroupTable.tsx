@@ -1,7 +1,7 @@
-import { Group } from "hooks"
 import { Skeleton, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
 import { countryToFlag } from "flags"
 import React from "react"
+import { Group } from "services/types"
 
 export function GroupTable({ group }: { group: Group }) {
   return (
