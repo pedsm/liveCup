@@ -2,6 +2,7 @@ import { Badge, Box, Card, Tag, Text, useColorModeValue } from "@chakra-ui/react
 import { countryToFlag } from "flags"
 import { DateTime } from "luxon"
 import { Match } from "services/types"
+import { PlayByPlay } from "./PlayByPlay"
 
 export const MatchCard = ({
   match,
@@ -53,6 +54,8 @@ export const MatchCard = ({
           <Text fontSize={"2xl"}>{match.away_team.goals ?? 0}</Text>
         </Box>
       </Box>
+
+      <PlayByPlay match={match}></PlayByPlay>
 
       <Text mt={4} color={"gray.600"} textAlign={"center"}>
         {match.venue} <br /> {match.location}
