@@ -14,7 +14,7 @@ export const MatchCard = ({
 }) => {
   if (mini) {
     return (
-      <Card p={'1em'} w='full' textAlign={'center'}>
+      <Card p={'1em'} w={'10em'} textAlign={'center'}>
         <Text fontSize={'4xl'}>{countryToFlag(match.home_team_country)} {countryToFlag(match.away_team_country)}</Text>
         <Text><Badge>{match.home_team_country}</Badge> - <Badge>{match.away_team_country}</Badge></Text>
         <Text fontSize={'2xl'}>{match.home_team.goals} - {match.away_team.goals}</Text>
