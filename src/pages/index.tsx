@@ -52,7 +52,7 @@ const Home: NextPage = () => {
         >
           {currentMatches != null && currentMatches?.length != 0 ? (
             currentMatches.map((match) => (
-              <MatchCard key={match.id} isLive match={match} />
+              <MatchCard key={match.id} match={match} />
             ))
           ) : (
             <Box my="auto">

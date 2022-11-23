@@ -30,6 +30,7 @@ export interface Event {
 export interface Match {
     id: number;
     venue: string;
+    time: string;
     location: string;
     status: string;
     attendance: null;
