@@ -25,7 +25,7 @@ const Footer = () => {
         <Link
           target={"_blank"}
           style={{ fontWeight: "bold" }}
-          href="https://twitter.com/lwndothma"
+          href="https://twitter.com/lwndothman"
         >
           @lwndothman
         </Link>{" "}
