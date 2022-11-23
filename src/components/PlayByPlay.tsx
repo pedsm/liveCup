@@ -9,7 +9,7 @@ export function PlayByPlay({ match }: { match: Match }) {
     events.sort((a,b) => b.id - a.id)
 
     return (
-        <Grid gridTemplateColumns={'1fr 1em 1fr'} overflowY={'scroll'}>
+        <Grid maxHeight={'40vh'} gridTemplateColumns={'1fr 1em 1fr'} overflowY={'scroll'}>
             {events.map((event, i) => (
                 <>
                     {event.country === match.home_team_country && <><Text key={`time_${event.id}`} textAlign={'right'}>{event.time}</Text><Dot key={`dot_${event.id}`} finalDot={i === 0}/></>}
