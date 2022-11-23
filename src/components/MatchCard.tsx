@@ -14,6 +14,7 @@ export const MatchCard = ({
   mini?: boolean
 }) => {
   const bg = useColorModeValue('white', 'whiteAlpha.200')
+  const text = useColorModeValue('gray.600', 'gray.200')
   if (mini) {
     return (
       <Card p={'1em'} w={'10em'} textAlign={'center'} bg={bg} height={'fit-content'}>
@@ -35,10 +36,6 @@ export const MatchCard = ({
   }
   return (
     <Card p={"1em"} h={'fit-content'} bg={bg}>
-      <Tag mx="auto" colorScheme="blackAlpha">
-        {match.stage_name}
-      </Tag>
-
       <Box display={"grid"} gap={"1em"} gridTemplateColumns={"1fr 1fr 1fr"}>
         <Box textAlign={"right"}>
           <Text fontSize={"4xl"}>{countryToFlag(match.home_team_country)}</Text>
@@ -57,7 +54,7 @@ export const MatchCard = ({
 
       <PlayByPlay match={match}></PlayByPlay>
 
-      <Text mt={4} color={"gray.600"} textAlign={"center"}>
+      <Text mt={4} color={text} textAlign={"center"}>
         {match.venue} <br /> {match.location}
       </Text>
       {isLive ? (
