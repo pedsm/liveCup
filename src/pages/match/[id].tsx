@@ -1,4 +1,5 @@
 import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
+import { PlayByPlay } from "components/PlayByPlay"
 import { countryToFlag } from "flags"
 import { useTodaysMatches } from "hooks"
 import type { NextPage } from "next"
@@ -19,6 +20,7 @@ const MatchStats: NextPage = () => {
 
   return (
     <Box maxW={"5xl"} mt={8} mx="auto">
+      <PlayByPlay match={match}></PlayByPlay>
       <Table>
         <Thead>
           <Tr>
@@ -33,6 +35,7 @@ const MatchStats: NextPage = () => {
             </Th>
           </Tr>
         </Thead>
+
 
         <Tbody>
           <Tr>

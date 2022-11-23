@@ -17,6 +17,16 @@ export interface Team {
     goal_differential: number;
 }
 
+export type EventType = 'booking' | 'goal' | 'substitution' 
+export interface Event {
+    id: number;
+    type_of_event: EventType;
+    player: string;
+    time: string;
+    extra_info: string
+    country?: string
+}
+
 export interface Match {
     id: number;
     venue: string;
@@ -26,7 +36,9 @@ export interface Match {
     officials: any[];
     stage_name: string;
     home_team_country: string;
+    home_team_events: Event[];
     away_team_country: string;
+    away_team_events: Event[];
     datetime: string;
     winner: null;
     winner_code: null;
