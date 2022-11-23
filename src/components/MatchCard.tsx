@@ -1,4 +1,4 @@
-import { Badge, Box, Card, Tag, Text } from "@chakra-ui/react"
+import { Badge, Box, Card, Tag, Text, useColorModeValue } from "@chakra-ui/react"
 import { countryToFlag } from "flags"
 import { DateTime } from "luxon"
 import { Match } from "services/types"
@@ -12,9 +12,10 @@ export const MatchCard = ({
   isLive?: boolean;
   mini?: boolean
 }) => {
+  const bg = useColorModeValue('white', 'whiteAlpha.200')
   if (mini) {
     return (
-      <Card p={'1em'} w={'10em'} textAlign={'center'} height={'fit-content'}>
+      <Card p={'1em'} w={'10em'} textAlign={'center'} bg={bg} height={'fit-content'}>
         <Text fontSize={'4xl'}>{countryToFlag(match.home_team_country)} {countryToFlag(match.away_team_country)}</Text>
         <Text><Badge>{match.home_team_country}</Badge> - <Badge>{match.away_team_country}</Badge></Text>
         <Text fontSize={'2xl'}>{match.home_team.goals} - {match.away_team.goals}</Text>
@@ -32,7 +33,7 @@ export const MatchCard = ({
     )
   }
   return (
-    <Card p={"1em"} h={'fit-content'}>
+    <Card p={"1em"} h={'fit-content'} bg={bg}>
       <Tag mx="auto" colorScheme="blackAlpha">
         {match.stage_name}
       </Tag>
