@@ -6,7 +6,6 @@ import { PlayByPlay } from "./PlayByPlay"
 
 export const MatchCard = ({
   match,
-  isLive,
   mini,
 }: {
   match: Match;
@@ -15,6 +14,7 @@ export const MatchCard = ({
 }) => {
   const bg = useColorModeValue('white', 'whiteAlpha.200')
   const text = useColorModeValue('gray.600', 'gray.200')
+  const isLive = match.status === 'in_progress'
   if (mini) {
     return (
       <Card p={'1em'} w={'10em'} textAlign={'center'} bg={bg} height={'fit-content'}>
@@ -36,6 +36,9 @@ export const MatchCard = ({
   }
   return (
     <Card p={"1em"} h={'fit-content'} bg={bg}>
+      <Text textAlign={'center'}>
+        <Badge>{match.time}</Badge>
+      </Text>
       <Box display={"grid"} gap={"1em"} gridTemplateColumns={"1fr 1fr 1fr"}>
         <Box textAlign={"right"}>
           <Text fontSize={"4xl"}>{countryToFlag(match.home_team_country)}</Text>
