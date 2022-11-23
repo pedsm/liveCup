@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Text, useColorModeValue } from "@chakra-ui/react"
+import { Box, Grid, Text } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
@@ -19,7 +19,6 @@ const Home: NextPage = () => {
   const { data: todayMatches } = useTodaysMatches()
   const { data: currentMatches } = useCurrentMatches()
   const { data: tomorrowsMatches } = useTomorrowsMatches()
-  const bg = useColorModeValue("white", "black")
 
   return (
     <div>
@@ -28,7 +27,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Live cup" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box as="main" bg={bg}>
+      <main>
         <Grid className="tables" gap={8} gridTemplateColumns="1fr 1fr">
           {groupsIsLoading ? (
             <>
@@ -82,7 +81,7 @@ const Home: NextPage = () => {
           </Grid>
           <Footer />
         </Box>
-      </Box>
+      </main>
     </div>
   )
 }
