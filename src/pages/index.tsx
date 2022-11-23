@@ -1,8 +1,14 @@
-import { Box, Divider, Grid, Text } from "@chakra-ui/react"
+import { Box, Divider, Grid, Text, useColorModeValue } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
-import { useCurrentMatches, useGroups, useIsGameLive, useTodaysMatches, useTomorrowsMatches } from "hooks"
+import {
+  useCurrentMatches,
+  useGroups,
+  useIsGameLive,
+  useTodaysMatches,
+  useTomorrowsMatches,
+} from "hooks"
 import { MatchCard } from "components/MatchCard"
 import Link from "next/link"
 import { getFood } from "food"
@@ -13,6 +19,7 @@ const Home: NextPage = () => {
   const { data: todayMatches } = useTodaysMatches()
   const { data: currentMatches } = useCurrentMatches()
   const { data: tomorrowsMatches } = useTomorrowsMatches()
+  const bg = useColorModeValue("white", "black")
 
   return (
     <div>
@@ -21,7 +28,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Live cup" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Box as="main" bg={bg}>
         <Grid className="tables" gap={8} gridTemplateColumns="1fr 1fr">
           {groupsIsLoading ? (
             <>
@@ -56,8 +63,8 @@ const Home: NextPage = () => {
             </Box>
           )}
         </Grid>
-        <Box className="upcoming">
-          <Grid gridAutoFlow={"column"}  gap={"1em"}>
+        <Box className="upcoming" position="relative">
+          <Grid gridAutoFlow={"column"} gap={"1em"}>
             {todayMatches &&
               todayMatches.map((match) => (
                 <Link
@@ -75,7 +82,7 @@ const Home: NextPage = () => {
           </Grid>
           <Footer />
         </Box>
-      </main>
+      </Box>
     </div>
   )
 }
