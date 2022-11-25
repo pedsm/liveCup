@@ -1,11 +1,9 @@
 import { Box, Grid, Text } from "@chakra-ui/react"
 import type { NextPage } from "next"
-import Head from "next/head"
 import { GroupTable, GroupTableSkeleton } from "components/GroupTable"
 import {
   useCurrentMatches,
   useGroups,
-  useIsGameLive,
   useTodaysMatches,
   useTomorrowsMatches,
 } from "hooks"
@@ -22,11 +20,6 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <Head>
-        <title>Live cup 2022</title>
-        <meta name="description" content="Live cup" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main>
         <Grid className="tables" gap={8} gridTemplateColumns="1fr 1fr">
           {groupsIsLoading ? (
