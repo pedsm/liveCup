@@ -21,8 +21,10 @@ main {
     "tables tables tables tables current"
     "tables tables tables tables current"
     "upcoming upcoming upcoming upcoming upcoming"
+    "footer footer footer footer footer"
   ;
   gap: 1em;
+  grid-template-rows: auto auto auto auto auto 3em;
   /* overflow: hidden; */
 }
 
@@ -39,6 +41,10 @@ main {
     grid-area: upcoming;
 }
 
+.footer {
+  grid-area: footer;
+}
+
 .linkFix {
     display: flex;
 }
@@ -52,6 +58,7 @@ main {
       "current"
       "upcoming"
       "tables"
+      "footer"
     ;
     height: auto;
   }

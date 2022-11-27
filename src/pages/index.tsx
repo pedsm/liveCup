@@ -72,8 +72,8 @@ const Home: NextPage = () => {
                 <MatchCard key={match.id} match={match} mini />
               ))}
           </Grid>
-          {/* <Footer /> */}
         </Box>
+        <Footer />
       </main>
     </div>
   )
