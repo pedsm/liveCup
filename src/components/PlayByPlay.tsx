@@ -13,7 +13,7 @@ export function PlayByPlay({ match }: { match: Match }) {
             {events.map((event, i) => (
                 <>
                     {event.country !== match.home_team_country && <><Text key={`time_${event.id}`} textAlign={'right'}>{event.time}</Text><Dot key={`dot_${event.id}`} finalDot={i === 0}/></>}
-                    <Box key={event.id} textAlign={event.country === match.home_team_country ? 'left' : 'right'}>
+                    <Box key={event.id} textAlign={event.country === match.home_team_country ? 'right' : 'left'}>
                         <Badge colorScheme={eventToColour(event.type_of_event)}>
                             {mapEventType(event.type_of_event)}
                         </Badge>
