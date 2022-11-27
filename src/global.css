@@ -28,6 +28,7 @@ main {
 
 .tables {
     grid-area: tables;
+    grid-template-columns: 1fr 1fr;
 }
 
 .current {
@@ -40,4 +41,33 @@ main {
 
 .linkFix {
     display: flex;
+}
+
+@media (max-width: 1450px) {
+  main {
+    margin: auto;
+    width: 100%;
+    max-width: 800px;
+    grid-template-areas: 
+      "current"
+      "upcoming"
+      "tables"
+    ;
+    height: auto;
+  }
+
+  .tables {
+    /* Maybe make this single fraction */
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .current {
+    max-width: 100%;
+  }
+
+  .upcoming {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
 }

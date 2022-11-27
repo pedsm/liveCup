@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <main>
-        <Grid className="tables" gap={8} gridTemplateColumns="1fr 1fr">
+        <Grid className="tables" gap={8}>
           {groupsIsLoading ? (
             <>
               {new Array(8).fill(0).map((_t, i) => (
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
             </Box>
           )}
         </Grid>
-        <Box className="upcoming" position="relative">
+        <Box className="upcoming">
           <Grid gridAutoFlow={"column"} gap={"1em"}>
             {todayMatches &&
               todayMatches.map((match) => (
@@ -72,7 +72,7 @@ const Home: NextPage = () => {
                 <MatchCard key={match.id} match={match} mini />
               ))}
           </Grid>
-          <Footer />
+          {/* <Footer /> */}
         </Box>
       </main>
     </div>
