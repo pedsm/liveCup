@@ -21,13 +21,16 @@ main {
     "tables tables tables tables current"
     "tables tables tables tables current"
     "upcoming upcoming upcoming upcoming upcoming"
+    "footer footer footer footer footer"
   ;
   gap: 1em;
+  grid-template-rows: auto auto auto auto auto 3em;
   /* overflow: hidden; */
 }
 
 .tables {
     grid-area: tables;
+    grid-template-columns: 1fr 1fr;
 }
 
 .current {
@@ -36,8 +39,43 @@ main {
 
 .upcoming {
     grid-area: upcoming;
+    padding: 1em;
+}
+
+.footer {
+  grid-area: footer;
 }
 
 .linkFix {
     display: flex;
+}
+
+@media (max-width: 1450px) {
+  main {
+    margin: auto;
+    width: 100%;
+    max-width: 800px;
+    grid-template-areas: 
+      "current"
+      "upcoming"
+      "tables"
+      "footer"
+    ;
+    height: auto;
+  }
+
+  .tables {
+    /* Maybe make this single fraction */
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .current {
+    max-width: 100%;
+  }
+
+  .upcoming {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
 }

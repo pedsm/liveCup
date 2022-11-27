@@ -5,10 +5,9 @@ const Footer = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Flex
-      justifyContent="space-between"
-      position="absolute"
-      bottom={0}
+      className="footer"
       alignItems="center"
+      justifyContent={'space-between'}
       width="full"
       pl={2}
       pr={8}
