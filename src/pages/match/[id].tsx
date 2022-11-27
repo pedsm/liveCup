@@ -1,8 +1,6 @@
-import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
+import { Box, Button } from "@chakra-ui/react"
 import Footer from "components/Footer"
 import { MatchCard } from "components/MatchCard"
-import { PlayByPlay } from "components/PlayByPlay"
-import { countryToFlag } from "flags"
 import { useTodaysMatches } from "hooks"
 import type { NextPage } from "next"
 import Link from "next/link"
@@ -21,7 +19,7 @@ const MatchStats: NextPage = () => {
   }
 
   return (
-    <Box maxW={"5xl"} mt={8} mx="auto">
+    <Box w={'100%'} maxW={"800px"} p={'1em'} mx="auto">
       <MatchCard match={match} />
       <Link href={"/"}>
         <Button mt={12}>&#8592; Go back</Button>
