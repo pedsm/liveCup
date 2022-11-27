@@ -39,6 +39,7 @@ main {
 
 .upcoming {
     grid-area: upcoming;
+    padding: 1em;
 }
 
 .footer {
