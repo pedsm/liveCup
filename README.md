@@ -1,7 +1,5 @@
 # liveCup
 
-<a href='https://ko-fi.com/pedsm' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-
 
 LiveCup is a live World Cup 2022 dashboard designed for TVs and Monitors, once the dashboard is open it will update information on a minute by minute basis about the following:
 
